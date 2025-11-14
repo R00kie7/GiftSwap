@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - GiftSwap</title>
+    <meta name="description" content="Guida completa a GiftSwap: sessioni temporanee per gruppi e Duo Mode permanente per coppie. Impara a organizzare estrazioni regalo perfette.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #F75C3D 0%, #FF8A65 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ffebee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .nav a {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-size: 0.9rem;
+        }
+        
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            margin: 1rem 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            padding: 2rem;
+        }
+        
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .section h2 {
+            color: #F75C3D;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #F75C3D;
+            padding-bottom: 0.5rem;
+        }
+        
+        .mode-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 6px solid #F75C3D;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .mode-icon {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #F75C3D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 4px solid white;
+        }
+        
+        .mode-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .badge {
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .badge-temp {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .badge-perm {
+            background: linear-gradient(45deg, #27ae60, #229954);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .feature-box i {
+            font-size: 2rem;
+            color: #F75C3D;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-box h4 {
+            color: #F75C3D;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tip {
+            background: linear-gradient(135deg, #F75C3D, #FF8A65);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        .tip-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin: 1rem 0;
+        }
+        
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+            padding: 0;
+        }
+        
+        .steps li {
+            counter-increment: step-counter;
+            padding: 1rem 0 1rem 3rem;
+            position: relative;
+            border-left: 2px solid #F75C3D;
+            margin-left: 1rem;
+        }
+        
+        .steps li:last-child {
+            border-left: none;
+        }
+        
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            background: #F75C3D;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #F75C3D;
+        }
+        
+        .comparison-card h4 {
+            color: #F75C3D;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-card li:before {
+            content: '✓';
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <h1><i class="fas fa-gift"></i> Tutorial GiftSwap</h1>
+                <p>Impara a usare le due modalità: sessioni temporanee per gruppi e Duo Mode per coppie</p>
+                <nav class="nav">
+                    <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
+                    <a href="#session-mode"><i class="fas fa-users"></i> Sessioni di Gruppo</a>
+                    <a href="#duo-mode"><i class="fas fa-heart"></i> Duo Mode</a>
+                    <a href="#comparison"><i class="fas fa-balance-scale"></i> Confronto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="section">
+                <h2><i class="fas fa-lightbulb"></i> Due Modalità, Due Usi</h2>
+                
+                <div class="tip">
+                    <i class="fas fa-info-circle tip-icon"></i>
+                    <strong>Scegli la modalità giusta:</strong> GiftSwap offre due esperienze distinte per situazioni diverse. Sessioni temporanee per eventi di gruppo, Duo Mode permanente per coppie stabili.
+                </div>
+                
+                <div class="success">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Privacy garantita:</strong> Tutte le funzionalità rispettano il GDPR. Sessioni temporanee si auto-eliminano dopo 24 ore, dati Duo permanenti eliminabili in qualsiasi momento.
+                </div>
+            </section>
+
+            <section id="session-mode" class="section">
+                <div class="mode-card">
+                    <div class="mode-icon"><i class="fas fa-users"></i></div>
+                    <h3>Sessioni di Gruppo <span class="badge badge-temp">TEMPORANEA 24H</span></h3>
+                    
+                    <p><strong>Ideale per:</strong> Feste di Natale con amici, compleanni, eventi aziendali, scambi regalo occasionali tra gruppi.</p>
+                    
+                    <h4><i class="fas fa-clock"></i> Caratteristiche Chiave</h4>
+                    <div class="feature-grid">
+                        <div class="feature-box">
+                            <i class="fas fa-hourglass-end"></i>
+                            <h4>Auto-eliminazione 24h</h4>
+                            <p>I dati spariscono automaticamente dopo 24 ore dall'ultima attività</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-qrcode"></i>
+                            <h4>QR Code condiviso</h4>
+                            <p>Tutti scannerizzano lo stesso codice per unirsi alla sessione</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-random"></i>
+                            <h4>Estrazione sincronizzata</h4>
+                            <p>Tap simultaneo per rivelare a chi regalerete</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-user-secret"></i>
+                            <h4>Totalmente anonimo</h4>
+                            <p>Nessun dato personale richiesto, solo nomi scelti</p>
+                        </div>
+                    </div>
+                    
+                    <h4><i class="fas fa-list-ol"></i> Come Usare le Sessioni</h4>
+                    <ul class="steps">
+                        <li>
+                            <strong>Crea Sessione:</strong> L'organizzatore clicca "Crea Sessione", inserisce nome e genera il QR Code
+                        </li>
+                        <li>
+                            <strong>Condividi QR:</strong> Mostra il QR Code agli altri partecipanti di persona o via screenshot
+                        </li>
+                        <li>
+                            <strong>Partecipanti:</strong> Gli altri cliccano "Unisciti" e scansionano il QR Code
+                        </li>
+                        <li>
+                            <strong>Waiting Room:</strong> Tutti vedono la lista partecipanti in tempo reale
+                        </li>
+                        <li>
+                            <strong>Estrai:</strong> Quando pronti, l'organizzatore clicca "Estrai" (tutti devono essere online)
+                        </li>
+                        <li>
+                            <strong>Rivela:</strong> Animazione sincronizzata, tap per rivelare a chi regalerete
+                        </li>
+                        <li>
+                            <strong>Storico:</strong> Risultato salvato localmente per 24h, poi eliminato automaticamente da Firebase
+                        </li>
+                    </ul>
+                    
+                    <div class="warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Importante:</strong> Tutti i partecipanti devono essere online durante l'estrazione per sincronizzazione corretta. Dopo 24h i dati cloud vengono eliminati automaticamente, ma il risultato rimane nel tuo storico locale.
+                    </div>
+                </div>
+            </section>
+
+            <section id="duo-mode" class="section">
+                <div class="mode-card">
+                    <div class="mode-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Duo Mode <span class="badge badge-perm">PERMANENTE</span></h3>
+                    
+                    <p><strong>Ideale per:</strong> Coppie, migliori amici, familiari stretti che vogliono condividere liste desideri tutto l'anno.</p>
+                    
+                    <h4><i class="fas fa-star"></i> Caratteristiche Chiave</h4>
+                    <div class="feature-grid">
+                        <div class="feature-box">
+                            <i class="fas fa-infinity"></i>
+                            <h4>Permanente</h4>
+                            <p>Dati salvati finché non decidi di eliminarli manualmente</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-list"></i>
+                            <h4>Liste Desideri</h4>
+                            <p>Condividi regali desiderati con nome e link opzionale</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-sync"></i>
+                            <h4>Sincronizzazione realtime</h4>
+                            <p>Aggiunte e modifiche visibili istantaneamente al partner</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-user-friends"></i>
+                            <h4>Solo 2 persone</h4>
+                            <p>Modalità esclusiva per coppia, non espandibile</p>
+                        </div>
+                    </div>
+                    
+                    <h4><i class="fas fa-list-ol"></i> Come Usare il Duo Mode</h4>
+                    <ul class="steps">
+                        <li>
+                            <strong>Crea Duo:</strong> Uno dei due clicca "Duo Mode", inserisce i nomi di entrambi e genera codice
+                        </li>
+                        <li>
+                            <strong>Condividi Codice:</strong> Condividi il codice Duo col partner (messaggio, vocal, di persona)
+                        </li>
+                        <li>
+                            <strong>Unisciti al Duo:</strong> Il partner clicca "Duo Mode" → "Unisciti con Codice" e inserisce il codice
+                        </li>
+                        <li>
+                            <strong>Lista Desideri:</strong> Entrambi possono aggiungere regali desiderati con nome e link opzionali
+                        </li>
+                        <li>
+                            <strong>Visualizza Lista Partner:</strong> Clicca sull'icona cuore per vedere cosa desidera il tuo partner
+                        </li>
+                        <li>
+                            <strong>Aggiorna quando vuoi:</strong> Aggiungi o rimuovi regali in qualsiasi momento, sincronizzazione automatica
+                        </li>
+                        <li>
+                            <strong>Esci quando vuoi:</strong> Pulsante "Esci dal Duo" elimina permanentemente tutti i dati dal cloud
+                        </li>
+                    </ul>
+                    
+                    <div class="tip">
+                        <i class="fas fa-lightbulb tip-icon"></i>
+                        <strong>Suggerimento:</strong> Usa il Duo Mode per compleanno, San Valentino, Natale, anniversari. Aggiorna la lista durante l'anno così il partner sa sempre cosa ti piacerebbe ricevere!
+                    </div>
+                    
+                    <div class="warning">
+                        <i class="fas fa-trash-alt"></i>
+                        <strong>Eliminazione dati:</strong> Il Duo Mode conserva i dati finché non clicchi "Esci dal Duo" o "Elimina Dati" nelle Impostazioni. Quando esci, TUTTI i dati vengono eliminati da Firebase per entrambi gli utenti.
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison" class="section">
+                <h2><i class="fas fa-balance-scale"></i> Confronto Modalità</h2>
+                
+                <div class="comparison">
+                    <div class="comparison-card">
+                        <h4><i class="fas fa-users"></i> Sessioni di Gruppo</h4>
+                        <ul>
+                            <li>Numero partecipanti illimitato</li>
+                            <li>Auto-eliminazione 24 ore</li>
+                            <li>Estrazione casuale con animazione</li>
+                            <li>QR Code per accesso rapido</li>
+                            <li>Sincronizzazione durante estrazione</li>
+                            <li>Ideale per eventi occasionali</li>
+                            <li>Nessuna lista desideri</li>
+                            <li>Storico locale disponibile</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4><i class="fas fa-heart"></i> Duo Mode</h4>
+                        <ul>
+                            <li>Esattamente 2 persone</li>
+                            <li>Permanente fino a eliminazione manuale</li>
+                            <li>Liste desideri condivise</li>
+                            <li>Codice alfanumerico per unirsi</li>
+                            <li>Sincronizzazione continua realtime</li>
+                            <li>Ideale per coppie e relazioni stabili</li>
+                            <li>Gestione regali desiderati</li>
+                            <li>Eliminazione manuale esplicita</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <i class="fas fa-question-circle tip-icon"></i>
+                    <strong>Quale scegliere?</strong> Usa Sessioni per feste di Natale con colleghi o amici (elimina dati dopo evento). Usa Duo Mode se hai un partner stabile e vuoi condividere desideri tutto l'anno.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-shield-alt"></i> Privacy e Sicurezza</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <i class="fas fa-user-secret"></i>
+                        <h4>Anonimato</h4>
+                        <p>Nessun dato personale richiesto, solo nomi scelti da te</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-lock"></i>
+                        <h4>Crittografia TLS/SSL</h4>
+                        <p>Tutti i dati in transito sono crittografati con protocolli sicuri</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-server"></i>
+                        <h4>Server EU</h4>
+                        <p>Dati ospitati in datacenter europei (Belgio) per GDPR compliance</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-clock"></i>
+                        <h4>Retention limitata</h4>
+                        <p>Sessioni 24h auto-delete, Duo eliminazione esplicita</p>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>GDPR Compliant:</strong> GiftSwap rispetta completamente il Regolamento Generale sulla Protezione dei Dati (GDPR). Puoi esercitare tutti i tuoi diritti tramite le Impostazioni dell'app.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-question-circle"></i> Domande Frequenti</h2>
+                
+                <div class="mode-card">
+                    <h3><i class="fas fa-users"></i> Sessioni di Gruppo</h3>
+                    
+                    <p><strong>Q: Cosa succede se qualcuno esce durante l'estrazione?</strong><br>
+                    R: L'estrazione continua, ma il risultato di chi esce potrebbe non sincronizzarsi. Meglio completare l'estrazione tutti insieme.</p>
+                    
+                    <p><strong>Q: Posso salvare il QR Code per riutilizzarlo?</strong><br>
+                    R: Sì, ma dopo 24h dall'ultima attività la sessione viene eliminata da Firebase. Dovrai crearne una nuova.</p>
+                    
+                    <p><strong>Q: Come posso vedere lo storico delle estrazioni?</strong><br>
+                    R: Clicca l'icona orologio nella home. Lo storico è salvato localmente sul tuo dispositivo e non si elimina automaticamente.</p>
+                    
+                    <p><strong>Q: Posso creare più sessioni contemporaneamente?</strong><br>
+                    R: Sì, ogni sessione ha un codice univoco. Puoi partecipare a più sessioni di gruppo diverse.</p>
+                </div>
+                
+                <div class="mode-card">
+                    <h3><i class="fas fa-heart"></i> Duo Mode</h3>
+                    
+                    <p><strong>Q: Posso avere più Duo Mode contemporaneamente?</strong><br>
+                    R: No, puoi essere in un solo Duo alla volta. Devi uscire dal Duo corrente per crearne/unirti a uno nuovo.</p>
+                    
+                    <p><strong>Q: Il partner vede quando aggiungo regali?</strong><br>
+                    R: Sì, la sincronizzazione è in tempo reale. Appena aggiungi, il partner vede l'aggiornamento istantaneamente.</p>
+                    
+                    <p><strong>Q: Cosa succede se uno esce dal Duo?</strong><br>
+                    R: Quando uno esce, TUTTI i dati vengono eliminati per entrambi. L'altro utente verrà notificato e rimandato alla home.</p>
+                    
+                    <p><strong>Q: Posso nascondere alcuni regali dalla lista?</strong><br>
+                    R: No, tutto ciò che aggiungi è visibile al partner. È la natura del Duo Mode: trasparenza totale sulle liste desideri.</p>
+                    
+                    <p><strong>Q: I link sono obbligatori?</strong><br>
+                    R: No, puoi aggiungere solo il nome del regalo. Il link è opzionale per indicare dove acquistarlo o mostrare specifiche.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class="fas fa-rocket"></i> Consigli Pro</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <i class="fas fa-wifi"></i>
+                        <h4>Connessione Stabile</h4>
+                        <p>Assicurati di avere connessione internet durante estrazione e sincronizzazione</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-screenshot"></i>
+                        <h4>Screenshot QR</h4>
+                        <p>Fai screenshot del QR Code per condividerlo facilmente via WhatsApp/Telegram</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h4>Pianifica in Anticipo</h4>
+                        <p>Crea Duo Mode settimane prima dell'evento per dare tempo al partner di compilare la lista</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <i class="fas fa-trash-alt"></i>
+                        <h4>Pulizia Periodica</h4>
+                        <p>Usa "Elimina Dati" nelle Impostazioni per pulire storico locale se diventa troppo lungo</p>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <i class="fas fa-heart"></i>
+                    <strong>Goditi l'esperienza!</strong> GiftSwap è pensato per rendere gli scambi regalo divertenti e sorprendenti. Usa le animazioni, coinvolgi tutti, e soprattutto divertiti!
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-home"></i> <a href="index.html" style="color: #ccc;">Torna alla Homepage</a></p>
+            <p><i class="fas fa-shield-alt"></i> <a href="privacy-policy-it.html" style="color: #ccc;">Privacy Policy</a> • <a href="terms-of-service-it.html" style="color: #ccc;">Termini di Servizio</a></p>
+            <p>&copy; 2025 GiftSwap - Tutorial Completo</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial - GiftSwap</title>
-    <meta name="description" content="Complete guide to GiftSwap: temporary sessions for groups and permanent Duo Mode for couples. Learn to organize perfect gift exchanges.">
+    <title>Tutorial - GiftRoulette</title>
+    <meta name="description" content="Complete guide to GiftRoulette: temporary sessions for groups and permanent Duo Mode for couples. Learn to organize perfect gift exchanges.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -226,6 +226,25 @@
             margin: 1rem 0;
         }
         
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #0d47a1;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 5px solid #1976d2;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+        
+        .info-box p {
+            margin: 0.8rem 0;
+        }
+        
+        .info-box strong {
+            color: #0d47a1;
+            font-weight: 600;
+        }
+        
         .success {
             background: #d4edda;
             color: #155724;
@@ -347,7 +366,7 @@
     <header>
         <div class="container">
             <div class="hero">
-                <h1><i class="fas fa-gift"></i> GiftSwap Tutorial</h1>
+                <h1><i class="fas fa-gift"></i> GiftRoulette Tutorial</h1>
                 <p>Learn to use both modes: temporary sessions for groups and Duo Mode for couples</p>
                 <nav class="nav">
                     <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
@@ -366,7 +385,7 @@
                 
                 <div class="tip">
                     <i class="fas fa-info-circle tip-icon"></i>
-                    <strong>Choose the right mode:</strong> GiftSwap offers two distinct experiences for different situations. Temporary sessions for group events, permanent Duo Mode for stable couples.
+                    <strong>Choose the right mode:</strong> GiftRoulette offers two distinct experiences for different situations. Temporary sessions for group events, permanent Duo Mode for stable couples.
                 </div>
                 
                 <div class="success">
@@ -451,63 +470,75 @@
                     <h4><i class="fas fa-star"></i> Key Features</h4>
                     <div class="feature-grid">
                         <div class="feature-box">
+                            <i class="fas fa-user-secret"></i>
+                            <h4>Secret Lists</h4>
+                            <p>Your wishlist is invisible to partner until draw</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-random"></i>
+                            <h4>Random Draw</h4>
+                            <p>Partner draws a random gift from your list</p>
+                        </div>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-link"></i>
+                            <h4>Purchase Links</h4>
+                            <p>Add links to facilitate buying the drawn gift</p>
+                        </div>
+                        
+                        <div class="feature-box">
                             <i class="fas fa-infinity"></i>
                             <h4>Permanent</h4>
                             <p>Data saved until you decide to manually delete it</p>
                         </div>
-                        
-                        <div class="feature-box">
-                            <i class="fas fa-list"></i>
-                            <h4>Wishlists</h4>
-                            <p>Share desired gifts with name and optional link</p>
-                        </div>
-                        
-                        <div class="feature-box">
-                            <i class="fas fa-sync"></i>
-                            <h4>Real-time Sync</h4>
-                            <p>Additions and changes instantly visible to partner</p>
-                        </div>
-                        
-                        <div class="feature-box">
-                            <i class="fas fa-user-friends"></i>
-                            <h4>Only 2 People</h4>
-                            <p>Exclusive couple mode, not expandable</p>
-                        </div>
+                    </div>
+                    
+                    <h4><i class="fas fa-question-circle"></i> How Drawing Works</h4>
+                    <div class="info-box">
+                        <p><strong>📝 User 1 (You)</strong> creates a list of gifts you'd like to receive. You can add name and optional link for each gift.</p>
+                        <p><strong>🎁 User 2 (Partner)</strong> <u>cannot see</u> your complete list. It's completely hidden!</p>
+                        <p><strong>🎲 Drawing:</strong> When User 2 clicks "Draw Gift", the app selects <u>one random gift</u> from your list and shows it to both of you.</p>
+                        <p><strong>✅ Result:</strong> Both of you see the drawn gift and any purchase link. User 2 knows what to gift you without seeing the entire list!</p>
+                        <p><strong>🔄 Bidirectional:</strong> User 2 also creates their secret list, and you draw from their list when you want to give them a gift.</p>
                     </div>
                     
                     <h4><i class="fas fa-list-ol"></i> How to Use Duo Mode</h4>
                     <ul class="steps">
                         <li>
-                            <strong>Create Duo:</strong> One person clicks "Duo Mode", enters both names and generates code
+                            <strong>Create Duo:</strong> Click "Duo Mode" and choose "Create New Duo", then enter both names and generate code
                         </li>
                         <li>
-                            <strong>Share Code:</strong> Share the Duo code with your partner (message, voice, in person)
+                            <strong>Share Code:</strong> Share the Duo code with your partner (message, voice, QR code)
                         </li>
                         <li>
-                            <strong>Join Duo:</strong> Partner clicks "Duo Mode" → "Join with Code" and enters the code
+                            <strong>Join Duo:</strong> Partner clicks "Duo Mode" → "Join with Code" and enters the 8-character code
                         </li>
                         <li>
-                            <strong>Wishlist:</strong> Both can add desired gifts with name and optional links
+                            <strong>Create Wishlist:</strong> Both add gifts you'd like to receive with name and optional link (e.g. Amazon link, online store)
                         </li>
                         <li>
-                            <strong>View Partner's List:</strong> Click heart icon to see what your partner desires
+                            <strong>Secret Lists:</strong> Neither can see the other's list. It remains hidden until drawing!
                         </li>
                         <li>
-                            <strong>Update Anytime:</strong> Add or remove gifts anytime, automatic synchronization
+                            <strong>Draw Gift:</strong> When you want to give your partner a gift, click "Draw Gift". The app shows a random gift from their secret list
                         </li>
                         <li>
-                            <strong>Leave Anytime:</strong> "Leave Duo" button permanently deletes all data from cloud
+                            <strong>View Link:</strong> If the drawn gift has a purchase link, you can open it directly to buy the gift
+                        </li>
+                        <li>
+                            <strong>Update Lists:</strong> You can modify your list anytime (add/remove gifts, modify links)
                         </li>
                     </ul>
                     
                     <div class="tip">
                         <i class="fas fa-lightbulb tip-icon"></i>
-                        <strong>Tip:</strong> Use Duo Mode for birthdays, Valentine's Day, Christmas, anniversaries. Update the list throughout the year so your partner always knows what you'd like to receive!
+                        <strong>Tip:</strong> Use Duo Mode for birthdays, Valentine's Day, Christmas, anniversaries. Update your list throughout the year so when your partner draws they always know what you'd like to receive! Perfect for surprises 🎁
                     </div>
                     
                     <div class="warning">
-                        <i class="fas fa-trash-alt"></i>
-                        <strong>Data Deletion:</strong> Duo Mode keeps data until you click "Leave Duo" or "Delete Data" in Settings. When you leave, ALL data is deleted from Firebase for both users.
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Privacy:</strong> Remember that after drawing, the drawn gift becomes visible to both. If you want maximum secrecy, create multiple different lists or update the list after your partner has drawn.
                     </div>
                 </div>
             </section>
@@ -535,11 +566,12 @@
                         <ul>
                             <li>Exactly 2 people</li>
                             <li>Permanent until manual deletion</li>
-                            <li>Shared wishlists</li>
+                            <li>SECRET wishlists (invisible to partner)</li>
+                            <li>Random gift draw from partner's list</li>
                             <li>Alphanumeric code to join</li>
-                            <li>Continuous real-time sync</li>
+                            <li>Optional purchase links</li>
                             <li>Ideal for couples and stable relationships</li>
-                            <li>Desired gift management</li>
+                            <li>Guaranteed surprise in drawing</li>
                             <li>Explicit manual deletion</li>
                         </ul>
                     </div>
@@ -582,7 +614,7 @@
                 
                 <div class="success">
                     <i class="fas fa-check-circle"></i>
-                    <strong>GDPR Compliant:</strong> GiftSwap fully complies with the General Data Protection Regulation (GDPR). You can exercise all your rights through the app Settings.
+                    <strong>GDPR Compliant:</strong> GiftRoulette fully complies with the General Data Protection Regulation (GDPR). You can exercise all your rights through the app Settings.
                 </div>
             </section>
 
@@ -608,20 +640,26 @@
                 <div class="mode-card">
                     <h3><i class="fas fa-heart"></i> Duo Mode</h3>
                     
+                    <p><strong>Q: Can my partner see my wishlist?</strong><br>
+                    A: No! Your list remains completely hidden until your partner clicks "Draw Gift". At that point they see only 1 randomly drawn gift, not the entire list.</p>
+                    
                     <p><strong>Q: Can I have multiple Duo Modes simultaneously?</strong><br>
                     A: No, you can be in only one Duo at a time. You must leave the current Duo to create/join a new one.</p>
                     
-                    <p><strong>Q: Does my partner see when I add gifts?</strong><br>
-                    A: Yes, synchronization is in real-time. As soon as you add, your partner sees the update instantly.</p>
+                    <p><strong>Q: What does my partner see when drawing?</strong><br>
+                    A: The app randomly selects ONE gift from your list and shows it to both (name + optional link). Your partner doesn't see the other gifts in your list!</p>
+                    
+                    <p><strong>Q: Can I draw multiple times from the same list?</strong><br>
+                    A: Yes, each draw is random. You might receive different gifts or the same gift multiple times. It's like a lottery!</p>
                     
                     <p><strong>Q: What happens if one leaves the Duo?</strong><br>
-                    A: When one leaves, ALL data is deleted for both. The other user will be notified and sent back to home.</p>
-                    
-                    <p><strong>Q: Can I hide some gifts from the list?</strong><br>
-                    A: No, everything you add is visible to your partner. It's the nature of Duo Mode: total transparency on wishlists.</p>
+                    A: When one leaves, ALL data is permanently deleted for both. The other user will be notified and sent back to home.</p>
                     
                     <p><strong>Q: Are links mandatory?</strong><br>
-                    A: No, you can add only the gift name. The link is optional to indicate where to buy it or show specifications.</p>
+                    A: No, you can add only the gift name. The link is optional to indicate where to buy it or show the specific product.</p>
+                    
+                    <p><strong>Q: Can I modify the list after drawing?</strong><br>
+                    A: Yes! You can add/remove gifts anytime. If your partner draws again, they might get a different gift from the updated list.</p>
                 </div>
             </section>
 
@@ -656,7 +694,7 @@
                 
                 <div class="success">
                     <i class="fas fa-heart"></i>
-                    <strong>Enjoy the experience!</strong> GiftSwap is designed to make gift exchanges fun and surprising. Use the animations, involve everyone, and most importantly have fun!
+                    <strong>Enjoy the experience!</strong> GiftRoulette is designed to make gift exchanges fun and surprising. Use the animations, involve everyone, and most importantly have fun!
                 </div>
             </section>
         </div>
@@ -666,7 +704,7 @@
         <div class="container">
             <p><i class="fas fa-home"></i> <a href="index.html" style="color: #ccc;">Back to Homepage</a></p>
             <p><i class="fas fa-shield-alt"></i> <a href="privacy-policy-en.html" style="color: #ccc;">Privacy Policy</a> • <a href="terms-of-service-en.html" style="color: #ccc;">Terms of Service</a></p>
-            <p>&copy; 2025 GiftSwap - Complete Tutorial</p>
+            <p>&copy; 2025 GiftRoulette - Complete Tutorial</p>
         </div>
     </footer>
 </body>

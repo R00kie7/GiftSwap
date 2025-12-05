@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unisciti al Gruppo - GiftRoulette</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F75C3D 0%, #FF8A65 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2D3142;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        
+        .code {
+            background: linear-gradient(135deg, #F75C3D 0%, #FF8A65 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin: 24px 0;
+            box-shadow: 0 4px 12px rgba(247, 92, 61, 0.3);
+        }
+        
+        .message {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #F75C3D 0%, #FF8A65 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(247, 92, 61, 0.3);
+            margin: 8px;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 92, 61, 0.4);
+        }
+        
+        .button-secondary {
+            background: #6c757d;
+        }
+        
+        .countdown {
+            color: #F75C3D;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #2D3142;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .instructions ol {
+            color: #666;
+            line-height: 2;
+            padding-left: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .code {
+                font-size: 24px;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎁</div>
+        <h1>Unisciti al Gruppo GiftRoulette!</h1>
+        
+        <div class="code" id="groupCode">Caricamento...</div>
+        
+        <div class="message">
+            Clicca il bottone qui sotto per aprire l'app GiftRoulette e unirti automaticamente al gruppo!
+        </div>
+        
+        <a href="#" id="openAppBtn" class="button">📱 Apri GiftRoulette</a>
+        
+        <div class="countdown" id="countdown">Tentativo di apertura automatica in <span id="seconds">3</span> secondi...</div>
+        
+        <div class="instructions">
+            <h3>💡 Se l'app non si apre:</h3>
+            <ol>
+                <li>Apri manualmente l'app GiftRoulette</li>
+                <li>Tocca "Unisciti al Gruppo"</li>
+                <li>Inserisci il codice mostrato sopra</li>
+            </ol>
+        </div>
+        
+        <div style="margin-top: 24px; color: #999; font-size: 14px;">
+            Non hai ancora l'app? 
+            <br>
+            <a href="#" class="button button-secondary" style="margin-top: 12px; display: inline-block;">
+                📥 Scarica da Play Store
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Estrai il codice dall'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            document.getElementById('groupCode').textContent = code;
+            
+            // Crea il deep link
+            const deepLink = `giftroulette://join?code=${code}`;
+            const openAppBtn = document.getElementById('openAppBtn');
+            openAppBtn.href = deepLink;
+            
+            // Countdown automatico
+            let secondsLeft = 3;
+            const countdownEl = document.getElementById('seconds');
+            const countdownContainer = document.getElementById('countdown');
+            
+            const countdown = setInterval(() => {
+                secondsLeft--;
+                if (secondsLeft > 0) {
+                    countdownEl.textContent = secondsLeft;
+                } else {
+                    clearInterval(countdown);
+                    countdownContainer.textContent = 'Apertura app in corso...';
+                    // Apri automaticamente l'app
+                    window.location.href = deepLink;
+                    
+                    // Dopo 2 secondi, mostra messaggio alternativo
+                    setTimeout(() => {
+                        countdownContainer.innerHTML = '⚠️ App non rilevata. <a href="' + deepLink + '" style="color: #F75C3D;">Clicca qui per riprovare</a>';
+                    }, 2000);
+                }
+            }, 1000);
+            
+            // Click manuale sul bottone
+            openAppBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = deepLink;
+            });
+        } else {
+            document.getElementById('groupCode').textContent = 'CODICE NON VALIDO';
+            document.getElementById('countdown').textContent = 'Errore: nessun codice fornito nell\'URL';
+        }
+    </script>
+</body>
+</html>
